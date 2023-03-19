@@ -14,8 +14,8 @@
       "sizes": "512x512"
     }
   ],
-  "scope": "/profdenis/",
-  "start_url": "/profdenis/",
+  "scope": "/https://profdenis.github.io/",
+  "start_url": "/https://profdenis.github.io/",
   "background_color": "#2d2c2c",
   "theme_color": "#2d2c2c",
   "display": "standalone"

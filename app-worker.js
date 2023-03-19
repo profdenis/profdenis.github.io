@@ -1,8 +1,8 @@
-const cacheName = "app-" + "6156b07a5e1b612df7e2eb436f4925e65a115b09";
-const resourcesToCache = ["/profdenis","/profdenis/app.css","/profdenis/app.js","/profdenis/manifest.webmanifest","/profdenis/wasm_exec.js","/profdenis/web/app.wasm","/profdenis/web/testwasm.css","https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css","https://storage.googleapis.com/murlok-github/icon-192.png","https://storage.googleapis.com/murlok-github/icon-512.png"];
+const cacheName = "app-" + "37a3a8ce02a422cdd818819930b48a2727fc0ea5";
+const resourcesToCache = ["/https://profdenis.github.io","/https://profdenis.github.io/app.css","/https://profdenis.github.io/app.js","/https://profdenis.github.io/manifest.webmanifest","/https://profdenis.github.io/wasm_exec.js","/https://profdenis.github.io/web/app.wasm","/https://profdenis.github.io/web/testwasm.css","https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css","https://storage.googleapis.com/murlok-github/icon-192.png","https://storage.googleapis.com/murlok-github/icon-512.png"];
 
 self.addEventListener("install", (event) => {
-  console.log("installing app worker 6156b07a5e1b612df7e2eb436f4925e65a115b09");
+  console.log("installing app worker 37a3a8ce02a422cdd818819930b48a2727fc0ea5");
 
   event.waitUntil(
     caches
@@ -28,7 +28,7 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  console.log("app worker 6156b07a5e1b612df7e2eb436f4925e65a115b09 is activated");
+  console.log("app worker 37a3a8ce02a422cdd818819930b48a2727fc0ea5 is activated");
 });
 
 self.addEventListener("fetch", (event) => {

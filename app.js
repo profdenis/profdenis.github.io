@@ -5,7 +5,7 @@ var goappNav = function () {};
 var goappOnUpdate = function () {};
 var goappOnAppInstallChange = function () {};
 
-const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"/profdenis","GOAPP_STATIC_RESOURCES_URL":"/profdenis","GOAPP_VERSION":"6156b07a5e1b612df7e2eb436f4925e65a115b09"};
+const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"/https://profdenis.github.io","GOAPP_STATIC_RESOURCES_URL":"/https://profdenis.github.io","GOAPP_VERSION":"37a3a8ce02a422cdd818819930b48a2727fc0ea5"};
 const goappLoadingLabel = "{progress}%";
 const goappWasmContentLengthHeader = "";
 
@@ -24,7 +24,7 @@ async function goappInitServiceWorker() {
   if ("serviceWorker" in navigator) {
     try {
       const registration = await navigator.serviceWorker.register(
-        "/profdenis/app-worker.js"
+        "/https://profdenis.github.io/app-worker.js"
       );
 
       goappServiceWorkerRegistration = registration;
@@ -214,7 +214,7 @@ async function goappInitWebAssembly() {
 
     const go = new Go();
     const wasm = await instantiateStreaming(
-      fetchWithProgress("/profdenis/web/app.wasm", showProgress),
+      fetchWithProgress("/https://profdenis.github.io/web/app.wasm", showProgress),
       go.importObject
     );
 
