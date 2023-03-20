@@ -6,8 +6,8 @@
 <meta name="description" content="Prof. Denis website">
 <meta content name="keywords">
 <meta name="theme-color" content="#2d2c2c">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
-<meta property="og:url" content="http://127.0.0.1:34691/home">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" name="viewport">
+<meta property="og:url" content="http://127.0.0.1:34691/about">
 <meta property="og:title" content>
 <meta property="og:description" content="Prof. Denis website">
 <meta property="og:type" content="website">
@@ -15,11 +15,11 @@
 <title>
 
 </title>
-<link rel="icon" type="image/png" href="https://storage.googleapis.com/murlok-github/icon-192.png">
-<link href="https://storage.googleapis.com/murlok-github/icon-192.png" rel="apple-touch-icon">
+<link type="image/png" href="https://storage.googleapis.com/murlok-github/icon-192.png" rel="icon">
+<link rel="apple-touch-icon" href="https://storage.googleapis.com/murlok-github/icon-192.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<link href="/app.css" type="text/css" rel="stylesheet">
-<script defer="true" src="/wasm_exec.js"></script>
+<link type="text/css" rel="stylesheet" href="/app.css">
+<script src="/wasm_exec.js" defer="true"></script>
 <script defer="true" src="/app.js"></script>
 <link type="text/css" rel="stylesheet" href="/web/testwasm.css">
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -27,19 +27,19 @@
 <body>
 <div>
 <aside id="app-wasm-loader" class="goapp-app-info">
-<img class="goapp-logo goapp-spin" src="https://storage.googleapis.com/murlok-github/icon-192.png" id="app-wasm-loader-icon">
+<img id="app-wasm-loader-icon" class="goapp-logo goapp-spin" src="https://storage.googleapis.com/murlok-github/icon-192.png">
 <p id="app-wasm-loader-label" class="goapp-label">
 0%
 </p>
 </aside>
 <div id="app-pre-render">
 <div>
-<nav class="navbar is-fixed-top has-shadow" role="navigation">
+<nav role="navigation" class="navbar is-fixed-top has-shadow">
 <a class="navbar-item" href="https://profdenis.com">
 <img src="/web/profdenis.png" width="125">
 </a>
 <div class="navbar-item has-dropdown is-hoverable">
-<a class="navbar-link" href="/courses">
+<a href="/courses" class="navbar-link">
 Courses
 </a>
 <div class="navbar-dropdown">
@@ -60,7 +60,7 @@ Go programming
 <a class="navbar-item" href="/courses/web1">
 Web programming with Flask
 </a>
-<a href="/courses/db2" class="navbar-item">
+<a class="navbar-item" href="/courses/db2">
 Database 2
 </a>
 <hr class="navbar-divider">
