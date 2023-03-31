@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="author" content>
 <meta name="description" content="Prof. Denis website">
-<meta content name="keywords">
+<meta name="keywords" content>
 <meta name="theme-color" content="#2d2c2c">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" name="viewport">
-<meta property="og:url" content="http://127.0.0.1:34691/about">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+<meta property="og:url" content="http://127.0.0.1:40011/about">
 <meta property="og:title" content>
-<meta property="og:description" content="Prof. Denis website">
+<meta content="Prof. Denis website" property="og:description">
 <meta property="og:type" content="website">
-<meta property="og:image" content>
+<meta content property="og:image">
 <title>
 
 </title>
-<link type="image/png" href="https://storage.googleapis.com/murlok-github/icon-192.png" rel="icon">
-<link rel="apple-touch-icon" href="https://storage.googleapis.com/murlok-github/icon-192.png">
+<link rel="icon" href="/web/profdenis.png">
+<link rel="apple-touch-icon" href="/web/profdenis.png">
 <link rel="manifest" href="/manifest.webmanifest">
 <link type="text/css" rel="stylesheet" href="/app.css">
-<script src="/wasm_exec.js" defer="true"></script>
+<script defer="true" src="/wasm_exec.js"></script>
 <script defer="true" src="/app.js"></script>
 <link type="text/css" rel="stylesheet" href="/web/testwasm.css">
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -27,22 +27,31 @@
 <body>
 <div>
 <aside id="app-wasm-loader" class="goapp-app-info">
-<img id="app-wasm-loader-icon" class="goapp-logo goapp-spin" src="https://storage.googleapis.com/murlok-github/icon-192.png">
-<p id="app-wasm-loader-label" class="goapp-label">
+<img id="app-wasm-loader-icon" class="goapp-logo goapp-spin" src="/web/profdenis.png">
+<p class="goapp-label" id="app-wasm-loader-label">
 0%
 </p>
 </aside>
 <div id="app-pre-render">
 <div>
-<nav role="navigation" class="navbar is-fixed-top has-shadow">
-<a class="navbar-item" href="https://profdenis.com">
+<nav class="navbar is-transparent">
+<div class="navbar-brand">
+<a class="navbar-item" href="/">
 <img src="/web/profdenis.png" width="125">
 </a>
+<div class="navbar-burger" data-target="mainNavbar">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div id="mainNavbar" class="navbar-menu">
+<div class="navbar-start">
 <div class="navbar-item has-dropdown is-hoverable">
-<a href="/courses" class="navbar-link">
+<a class="navbar-link" href="/courses/overview">
 Courses
 </a>
-<div class="navbar-dropdown">
+<div class="navbar-dropdown is-boxed">
 <a class="navbar-item" href="/courses/algo">
 Introduction to Algorithms
 </a>
@@ -54,13 +63,13 @@ Python programming
 Database 1
 </a>
 <hr class="navbar-divider">
-<a class="navbar-item" href="/courses/prog2">
+<a href="/courses/prog2" class="navbar-item">
 Go programming
 </a>
 <a class="navbar-item" href="/courses/web1">
 Web programming with Flask
 </a>
-<a class="navbar-item" href="/courses/db2">
+<a href="/courses/db2" class="navbar-item">
 Database 2
 </a>
 <hr class="navbar-divider">
@@ -72,15 +81,15 @@ Web services with Flask
 <a class="navbar-item" href="/about">
 About
 </a>
-<a class="navbar-item" href="/blog">
+<a class="navbar-item" href="/blog/overview">
 Blog
 </a>
 <div class="navbar-item has-dropdown is-hoverable">
 <a class="navbar-link" href="/test">
 test
 </a>
-<div class="navbar-dropdown">
-<a class="navbar-item" href="/aaa">
+<div class="navbar-dropdown is-boxed">
+<a href="/aaa" class="navbar-item">
 aaa
 </a>
 <a class="navbar-item" href="/bbb">
@@ -92,17 +101,20 @@ ccc
 </a>
 </div>
 </div>
+</div>
+<div class="navbar-end"></div>
+</div>
 </nav>
 <div class="section">
 <h1 class="title">
-Prof. Denis
+About
 </h1>
 <p class="subtitle has-background-warning">
 Under construction!
 </p>
 </div>
 <footer class="footer">
-<div class="content has_text_centered">
+<div class="content has-text-centered">
 <p>
 Copyright 2023 Prof. Denis
 </p>
