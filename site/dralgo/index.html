@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrAlgo Web</title>
+    <script src="wasm_exec.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        textarea { width: 100%; height: 200px; font-family: monospace; }
+        .output { border: 1px solid #ccc; padding: 10px; white-space: pre; background: #f9f9f9; min-height: 100px; font-family: monospace; overflow: auto; }
+        .controls { margin: 10px 0; }
+        .result-container { display: flex; gap: 0; margin-top: 10px; border: 1px solid #ccc; height: 500px; overflow: hidden; }
+        .image-container { overflow: auto; background: white; padding: 10px; }
+        .image-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .resizer { width: 10px; cursor: col-resize; background: #eee; border-left: 1px solid #ccc; border-right: 1px solid #ccc; flex-shrink: 0; }
+        .resizer:hover { background: #ddd; }
+
+        /* Styles pour les onglets */
+        .tabs { display: flex; border-bottom: 2px solid #ccc; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; cursor: pointer; border: 1px solid transparent; border-bottom: none; }
+        .tab.active { border-color: #ccc; border-bottom: 2px solid white; margin-bottom: -2px; font-weight: bold; background: #f0f0f0; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <h1>DrAlgo</h1>
+    <p>Saisissez votre algorithme ci-dessous :</p>
+
+    <div class="tabs" id="tabs-header">
+        <div class="tab active" onclick="openTab(event, 'tab-empty')">Nouveau</div>
+        <div class="tab" onclick="openTab(event, 'tab-expr')">Expressions</div>
+        <div class="tab" onclick="openTab(event, 'tab-cond')">Conditions</div>
+        <div class="tab" onclick="openTab(event, 'tab-loop')">Boucles</div>
+        <div class="tab" onclick="openTab(event, 'tab-io')">E/S</div>
+    </div>
+
+    <div id="tab-empty" class="tab-content active">
+        <textarea class="algo-input" placeholder="entier x, y; x = 5; y = x + 2;"></textarea>
+        <div class="controls">
+            Langage cible : 
+            <select class="algo-lang">
+                <option value="puml">PlantUML</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+                <option value="js">JavaScript</option>
+                <option value="java">Java</option>
+            </select>
+            <button onclick="translateCode(this)">Générer</button>
+        </div>
+        <div class="result-container">
+            <div class="image-container" style="flex: 0 0 66%;"></div>
+            <div class="resizer"></div>
+            <div class="output" style="flex: 1;"></div>
+        </div>
+    </div>
+
+    <div id="tab-expr" class="tab-content">
+        <textarea class="algo-input">// Test des opérateurs arithmétiques et de la priorité
+a = 10
+b = 3
+c = a + b * 2
+d = (a + b) * 2
+e = a ** b // Puissance
+f = a % b  // Modulo
+Afficher "a =", a
+Afficher "b =", b
+Afficher "a + b * 2 =", c
+Afficher "(a + b) * 2 =", d
+Afficher "a ** b =", e
+Afficher "a % b =", f</textarea>
+        <div class="controls">
+            Langage cible : 
+            <select class="algo-lang">
+                <option value="puml">PlantUML</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+                <option value="js">JavaScript</option>
+                <option value="java">Java</option>
+            </select>
+            <button onclick="translateCode(this)">Générer</button>
+        </div>
+        <div class="result-container">
+            <div class="image-container" style="flex: 0 0 66%;"></div>
+            <div class="resizer"></div>
+            <div class="output" style="flex: 1;"></div>
+        </div>
+    </div>
+
+    <div id="tab-cond" class="tab-content">
+        <textarea class="algo-input">// Test des structures de contrôle Si / Sinon Si / Sinon
+score = 85
+si score >= 90 alors
+    Afficher "Excellent"
+sinon si score >= 70 alors
+    Afficher "Très bien"
+sinon si score >= 50 alors
+    Afficher "Passable"
+sinon
+    Afficher "Échec"
+fin si
+
+x = -5
+si x < 0 alors
+    Afficher "x est négatif"
+fin si</textarea>
+        <div class="controls">
+            Langage cible : 
+            <select class="algo-lang">
+                <option value="puml">PlantUML</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+                <option value="js">JavaScript</option>
+                <option value="java">Java</option>
+            </select>
+            <button onclick="translateCode(this)">Générer</button>
+        </div>
+        <div class="result-container">
+            <div class="image-container" style="flex: 0 0 66%;"></div>
+            <div class="resizer"></div>
+            <div class="output" style="flex: 1;"></div>
+        </div>
+    </div>
+
+    <div id="tab-loop" class="tab-content">
+        <textarea class="algo-input">// Test de la boucle Tant Que
+compteur = 5
+Tant Que compteur > 0
+    Afficher "Compte à rebours :", compteur
+    compteur = compteur - 1
+Fin Tant Que
+Afficher "Décollage !"</textarea>
+        <div class="controls">
+            Langage cible : 
+            <select class="algo-lang">
+                <option value="puml">PlantUML</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+                <option value="js">JavaScript</option>
+                <option value="java">Java</option>
+            </select>
+            <button onclick="translateCode(this)">Générer</button>
+        </div>
+        <div class="result-container">
+            <div class="image-container" style="flex: 0 0 66%;"></div>
+            <div class="resizer"></div>
+            <div class="output" style="flex: 1;"></div>
+        </div>
+    </div>
+
+    <div id="tab-io" class="tab-content">
+        <textarea class="algo-input">// Test des instructions Lire et Afficher
+Afficher "Quel est votre nom ?"
+Lire nom
+Afficher "Quel est votre âge ?"
+Lire Entier age
+Afficher "Bonjour", nom, "!"
+si age >= 18 alors
+    Afficher "Vous êtes majeur."
+sinon
+    Afficher "Vous êtes mineur."
+fin si</textarea>
+        <div class="controls">
+            Langage cible : 
+            <select class="algo-lang">
+                <option value="puml">PlantUML</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+                <option value="js">JavaScript</option>
+                <option value="java">Java</option>
+            </select>
+            <button onclick="translateCode(this)">Générer</button>
+        </div>
+        <div class="result-container">
+            <div class="image-container" style="flex: 0 0 66%;"></div>
+            <div class="resizer"></div>
+            <div class="output" style="flex: 1;"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+            console.log("WASM DrAlgo prêt");
+        });
+
+        function openTab(evt, tabId) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function encode64(data) {
+            let r = "";
+            for (let i = 0; i < data.length; i += 3) {
+                if (i + 2 < data.length) {
+                    r += append3bytes(data.charCodeAt(i), data.charCodeAt(i + 1), data.charCodeAt(i + 2));
+                } else if (i + 1 < data.length) {
+                    r += append3bytes(data.charCodeAt(i), data.charCodeAt(i + 1), 0);
+                } else {
+                    r += append3bytes(data.charCodeAt(i), 0, 0);
+                }
+            }
+            return r;
+        }
+
+        function append3bytes(b1, b2, b3) {
+            const c1 = b1 >> 2;
+            const c2 = ((b1 & 0x3) << 4) | (b2 >> 4);
+            const c3 = ((b2 & 0xF) << 2) | (b3 >> 6);
+            const c4 = b3 & 0x3F;
+            let r = "";
+            r += encode6bit(c1 & 0x3F);
+            r += encode6bit(c2 & 0x3F);
+            r += encode6bit(c3 & 0x3F);
+            r += encode6bit(c4 & 0x3F);
+            return r;
+        }
+
+        function encode6bit(b) {
+            if (b < 10) return String.fromCharCode(48 + b);
+            b -= 10;
+            if (b < 26) return String.fromCharCode(65 + b);
+            b -= 26;
+            if (b < 26) return String.fromCharCode(97 + b);
+            b -= 26;
+            if (b === 0) return '-';
+            if (b === 1) return '_';
+            return '?';
+        }
+
+        function compress(s) {
+            const bytes = new TextEncoder().encode(s);
+            const compressed = pako.deflateRaw(bytes, { level: 9 });
+            let binary = "";
+            for (let i = 0; i < compressed.byteLength; i++) {
+                binary += String.fromCharCode(compressed[i]);
+            }
+            return encode64(binary);
+        }
+
+        function translateCode(btn) {
+            const container = btn.closest(".tab-content");
+            const input = container.querySelector(".algo-input").value;
+            const lang = container.querySelector(".algo-lang").value;
+            const outputDiv = container.querySelector(".output");
+            const imgContainer = container.querySelector(".image-container");
+            
+            imgContainer.innerHTML = ""; // Reset image
+            outputDiv.textContent = "";
+
+            if (typeof dralgoTranslate === "function") {
+                // Toujours générer le diagramme PlantUML
+                const pumlResult = dralgoTranslate(input, "puml");
+                if (!pumlResult.startsWith("Erreur")) {
+                    const encoded = compress(pumlResult);
+                    const url = "https://www.plantuml.com/plantuml/svg/" + encoded;
+                    imgContainer.innerHTML = `<h4>Diagramme généré :</h4><img src="${url}" alt="PlantUML Diagram">`;
+                } else {
+                    imgContainer.innerHTML = `<div style="color:red">Erreur PlantUML : ${pumlResult}</div>`;
+                }
+
+                // Générer le code pour le langage sélectionné (si ce n'est pas puml car déjà fait)
+                if (lang !== "puml" && lang !== "plantuml") {
+                    const result = dralgoTranslate(input, lang);
+                    outputDiv.textContent = result;
+                } else {
+                    outputDiv.textContent = pumlResult;
+                }
+            } else {
+                alert("Le module WebAssembly n'est pas encore prêt.");
+            }
+        }
+
+        // Logique du split pane
+        let isResizing = false;
+        let currentResizer = null;
+
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.classList.contains('resizer')) {
+                isResizing = true;
+                currentResizer = e.target;
+                document.body.style.cursor = 'col-resize';
+            }
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isResizing) return;
+
+            const container = currentResizer.closest('.result-container');
+            const leftPane = container.querySelector('.image-container');
+            
+            const containerRect = container.getBoundingClientRect();
+            const relativeX = e.clientX - containerRect.left;
+            const percentage = (relativeX / containerRect.width) * 100;
+
+            if (percentage > 10 && percentage < 90) {
+                leftPane.style.flex = `0 0 ${percentage}%`;
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            isResizing = false;
+            document.body.style.cursor = 'default';
+        });
+    </script>
+</body>
+</html>
